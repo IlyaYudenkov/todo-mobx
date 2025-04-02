@@ -1,0 +1,15 @@
+.TaskSidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 0.3;
+    padding: 20px;
+    width: 100%;
+    min-height: 100vh;
+    border-left: 1px solid gray;
+
+    h3{
+        font-size: 26px;
+        color: #ffffff;
+    }
+}

@@ -1,0 +1,16 @@
+.TaskHomeSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 0.7;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+
+    .topContainer{
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        width: 100%;
+    }
+}
