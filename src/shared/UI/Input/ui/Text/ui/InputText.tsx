@@ -1,17 +1,18 @@
+import { cls } from '@/shared/lib/classes.lib'
+import { IInput } from '../../../model/input.model'
 import { EInputTextTypes, EInputTextVariants } from '../model/inputText.model'
 import cl from './_InputText.module.scss'
 
-interface IInputText {
-    name?: string,
+interface IInputText extends IInput {
     defaultValue?: string,
     type?: EInputTextTypes
     variant?: EInputTextVariants
-    placeholder?: string,
 
     rows?: number
 }
 
 export const InputText = ({
+    className,
     name,
     defaultValue,
     type = EInputTextTypes.TEXT,
@@ -24,13 +25,13 @@ export const InputText = ({
         <>
             {variant === EInputTextVariants.INPUT ? <input
                 name={name}
-                className={cl.input}
+                className={cls(cl.input, className)}
                 defaultValue={defaultValue}
                 type={type}
                 placeholder={placeholder}
             /> : <textarea name={name}
                 rows={rows}
-                className={cl.textarea}
+                className={cls(cl.textarea, className)}
                 defaultValue={defaultValue}
                 placeholder={placeholder} />}
         </>

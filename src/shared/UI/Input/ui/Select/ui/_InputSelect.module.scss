@@ -1,0 +1,20 @@
+.InputSelect{
+    display: block; 
+
+    width: 100%;
+    background-color: rgba(214, 207, 198, 0.16);
+    padding: 10px;
+
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: border-color .3s ease-in-out;
+
+    &:hover{
+        border-color: #e7e0d698;
+    }
+
+    & option{
+        padding: 10px;
+
+    }
+}

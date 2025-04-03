@@ -1,5 +1,25 @@
 .Search{
     display: flex;
-    gap: 15px;
     width: 100%;
+    background-color: var(--background-2);
+    border-radius: 15px;
+
+    .inputSearch{
+        background-color: transparent;
+        border-radius: 15px 0px 0px 15px;
+    }
+    
+    .buttonSearch{
+        padding: 10px 15px;
+        border-radius: 0px 15px 15px 0px;
+        transition: background-color .3s ease-in-out;
+
+        &:hover{
+            background-color: var(--beige-1);
+        }
+
+        &:active{
+            background-color: var(--beige-2);
+        }
+    }
 }

@@ -6,10 +6,16 @@
     padding: 20px;
     width: 100%;
     min-height: 100vh;
-    border-left: 1px solid gray;
+    opacity: 0;
+    visibility: hidden;
 
     h3{
         font-size: 26px;
         color: #ffffff;
     }
+}
+
+.visible{
+    opacity: 1;
+    visibility: visible;
 }

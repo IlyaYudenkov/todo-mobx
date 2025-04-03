@@ -1,10 +1,16 @@
 .input, .textarea{
     width: 100%;
     padding: 10px;
+    background-color: var(--background-2);
+
     border-radius: 15px;
-    border: 2px solid teal;
-    color: #ffffff;
+    border: 2px solid transparent;
+    color: var(--black);
     font-size: 16px;
+    transition: border-color .3s ease-in-out;
+    &:hover{
+        border-color: var(--beige-1);
+    }
 }
 
 .textarea{
