@@ -1,0 +1,46 @@
+.TaskItem {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid var(--beige-1);
+    border-radius: 15px;
+
+    .leftContainer {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        & h5 {
+            color: var(--white-1);
+            overflow: hidden;
+
+        }
+    }
+
+    .trashButton {
+        padding: 7px;
+        border-radius: 15px;
+        transition: background-color .3s ease-in-out;
+
+        &:hover {
+            background-color: var(--beige-1);
+        }
+
+        &:active {
+            background-color: var(--beige-2);
+        }
+    }
+}
+
+.completedTask {
+    border-color: var(--positive);
+}
+
+.TaskItem,
+.completedTask {
+    opacity: 1;
+    transition: border-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
