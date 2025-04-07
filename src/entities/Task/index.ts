@@ -1,2 +1,2 @@
-export {TaskItem} from './Item/ui/TaskItem'
-export {TaskList} from './List/ui/TaskList'
+export {TaskItem} from './ui/Item/ui/TaskItem'
+export {TaskList} from './ui/List/ui/TaskList'

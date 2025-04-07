@@ -3,8 +3,8 @@ import cl from './_TaskItem.module.scss'
 import { Checkbox } from "@/shared/UI/Input"
 import { Button } from "@/shared/UI/Button"
 import { TRASH_ICON } from "@/shared/data/icon/trash.icon"
-import { ITaskItem } from "../../model/task.model"
 import { useState } from "react"
+import { ITaskItem } from "@/entities/Task/model/task.model"
 
 export const TaskItem = ({
     className,

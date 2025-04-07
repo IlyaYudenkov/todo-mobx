@@ -1,7 +1,7 @@
 import { cls } from "@/shared/lib/classes.lib"
 import cl from './_TaskList.module.scss'
-import { ITaskItem } from "../../model/task.model"
 import { TaskItem } from "../../Item/ui/TaskItem"
+import { ITaskItem } from "@/entities/Task/model/task.model"
 
 interface ITaskList {
     className?: string,
