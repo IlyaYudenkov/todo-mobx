@@ -1,12 +1,13 @@
-import { Home } from "@/pages"
+import { HomePage } from "@/pages";
+import { MobxProvider } from "./providers/mobx/MobxProvider";
 
 function App() {
 
   return (
-    <>
-      <Home />
-    </>
+    <MobxProvider>
+      <HomePage/>
+    </MobxProvider>
   )
 }
 
-export default App
+export default App;

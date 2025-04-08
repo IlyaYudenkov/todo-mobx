@@ -3,6 +3,8 @@
     --black: #000000;
     --gray-1: #38404b;
     --white-1: #fbfcff;
+    --white-2: #fbfcffc7;
+
     --beige-1: #e7e0d698;
     --beige-2: #e7e0d652;
     --highlight-beige: rgba(214, 207, 198, 0.16);
@@ -12,6 +14,7 @@
     --background-1: var(--gray-1);
     --background-2: var(--highlight-beige);
     --foreground-1: var(--white-1);
+
 
     --positive: var(--green-1);
 
@@ -34,12 +37,12 @@
     --fs-elg: 3rem;
 
     //FONT-WEIGHT
-    --fw-regular: 400;
-    --fw-medium: 500;
-    --fw-semi-bold: 600;
-    --fw-bold: 700;
-    --fw-extra-bold: 800;
-    --fw-black: 900;
+    --fw-reg: 400;
+    --fw-med: 500;
+    --fw-sb: 600;
+    --fw-b: 700;
+    --fw-eb: 800;
+    --fw-bl: 900;
 }
 
 

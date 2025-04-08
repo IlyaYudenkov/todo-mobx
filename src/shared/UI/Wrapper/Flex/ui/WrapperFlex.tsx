@@ -13,7 +13,7 @@ export const WrapperFlex = ({
 }: IWrapperFlex) => {
     return (
         <div className={cls(cl.WrapperFlex, className)}>
-            {children}
+            {children}dsadasdasd
         </div>
     )
 }

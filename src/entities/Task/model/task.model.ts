@@ -1,5 +1,7 @@
 export interface ITaskItem {
-    id: number,
+    id?: number,
     title: string,
+    description?: string,
+    done?: boolean
     className?: string
 }

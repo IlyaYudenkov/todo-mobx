@@ -1,3 +1,32 @@
 .TaskList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
     width: 100%;
+
+    .notFound{
+        font-size: 20px;
+        color: var(--foreground-1);
+        font-weight: var(--fw-med);
+    }
+
+    .defaultButton{
+        width: fit-content;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid var(--foreground-1);
+        font-weight: var(--fw-sb);
+        transition: all .3s ease-in-out;
+
+        &:hover{
+            border-color: var(--beige-1);
+            color: var(--background-1);
+            background-color: var(--foreground-1);
+        }
+        &:active{
+            background-color: var(--white-2);
+        }
+    }
 }

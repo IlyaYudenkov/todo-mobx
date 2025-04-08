@@ -3,16 +3,18 @@ import cl from './_TaskHomeSection.module.scss'
 import { AddTask } from '@/features/AddTask'
 import { TaskFilter } from '@/features/TaskFilter'
 import { TaskList } from '@/entities/Task'
-import { useState } from 'react'
-import { ITaskItem } from '@/entities/Task/model/task.model'
+import { taskStore } from '@/app/store/task.store'
+import { observer } from 'mobx-react-lite'
+import { toJS } from 'mobx'
+import { Loader } from '@/shared/UI/Loader'
 
 
-export const TaskHomeSection = () => {
+export const TaskHomeSection = observer(() => {
 
-    //STATE
-    const [tasks, setTasks] = useState<ITaskItem[]>([])
+    //MOBX
+    const {tasks, isLoading} = taskStore;    
 
-
+    if(isLoading) return <Loader/>
     return (
         <main className={cl.TaskHomeSection}>
             <div className={cl.topContainer}>
@@ -22,9 +24,7 @@ export const TaskHomeSection = () => {
             <div className={cl.middleContainer}>
                 <TaskFilter/>
             </div>
-            <TaskList items={[
-                {id: 1, title: 'dsadasdasd'}
-            ]}/>
+            <TaskList items={toJS(tasks)}/>
         </main>
     )
-}
+})
