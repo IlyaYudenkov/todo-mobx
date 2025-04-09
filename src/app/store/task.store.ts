@@ -6,7 +6,6 @@ import { makeAutoObservable } from "mobx";
 class TaskStore {
     tasks: ITaskItem[] = []
     isLoading: boolean = false
-    isFiltered: boolean = false
     filter: ETaskFilter = ETaskFilter.ALL
     searchTitle: string = '';
 
@@ -21,7 +20,7 @@ class TaskStore {
         this.isLoading = false;
     }
 
-    addTask({ title, description }: ITaskItem) {
+    addTask(title: string, description?: string) {
         const newTask = {
             id: Date.now(),
             title,
@@ -31,60 +30,62 @@ class TaskStore {
         this.tasks = TaskApi.addNewTask(newTask)
     }
 
-    deleteTask(id: number){
+    deleteTask(id: number) {
         this.tasks = TaskApi.deleteTask(id)
     }
 
-    updateTask(task: ITaskItem){
-        const searchTask = this.getTask(task?.id);
+    updateTask(task: ITaskItem) {
+        this.tasks = TaskApi.updateTask(task.id, task);
     }
 
-    updateSearchTitle(title: string){
-        if(!title) return;
+    updateSearchTitle(title: string) {
         this.searchTitle = title;
     }
 
-    getTask(id: number){
+    getTask(id: number) {
         return this.tasks.find(task => task.id === id)
     }
 
-    toggleTheTask(id: number, completed?: boolean){
+    toggleTheTask(id: number, completed?: boolean) {
         const isDone = completed ?? this.getTask(id)?.done
         this.tasks = TaskApi.updateTask(id, {
             done: isDone
         })
     }
 
-    //FILTERS
-    get filteredTasksBySearch() {
-        if(!this.searchTitle) return this.getAll();        
-		this.tasks = this.tasks.filter(task => task.title.toLowerCase().includes((this.searchTitle as string).toLowerCase()))
-        this.isFiltered = true 
-	}
-
-    setFilterByDone(filter: ETaskFilter){
-        this.isFiltered = false;
-        if(filter !== ETaskFilter.ALL) this.isFiltered = true;
-        this.filter = filter
+    get isFiltered() {
+        return this.searchTitle !== '' || this.filter !== ETaskFilter.ALL;
     }
-    
-    get filteredTasksByDone() {
-        switch (this.filter) {
-            case ETaskFilter.COMPLETED:
-                return this.tasks.filter(task => task.done)
-            case ETaskFilter.UNCOMPLETED:
-                return this.tasks.filter(task => !task.done)
-            default:
-                return this.tasks;
-        }
-	}
 
-    resetTheFilters(){
+    //FILTERS
+    get filteredTasks() {
+        let result: ITaskItem[] = this.tasks;
+
+        if (this.searchTitle.trim()) {
+            result = result.filter(task =>
+                task.title.toLowerCase().includes((this.searchTitle as string).toLowerCase()))
+        }
+
+        if (this.filter === ETaskFilter.COMPLETED) {
+            result = result.filter(task => task.done)
+        } else if (this.filter === ETaskFilter.UNCOMPLETED) {
+            result = result.filter(task => !task.done)
+        }
+
+        return result;
+    }
+
+    setFilterByDone(filter: ETaskFilter) {
+        this.filter = filter;
+    }
+
+
+    resetTheFilters() {
         this.isLoading = true;
         this.tasks = TaskApi.getAllTasks();
         this.filter = ETaskFilter.ALL;
-        this.isFiltered = false;
-        this.isLoading = false;      
+        this.isLoading = false;
+        this.updateSearchTitle('')
     }
 }
 export const taskStore = new TaskStore();

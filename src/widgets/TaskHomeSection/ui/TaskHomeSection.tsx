@@ -5,7 +5,6 @@ import { TaskFilter } from '@/features/TaskFilter'
 import { TaskList } from '@/entities/Task'
 import { taskStore } from '@/app/store/task.store'
 import { observer } from 'mobx-react-lite'
-import { toJS } from 'mobx'
 import { Loader } from '@/shared/UI/Loader'
 import { useEffect, useState } from 'react'
 import { ITaskItem } from '@/entities/Task/model/task.model'
@@ -17,29 +16,25 @@ export const TaskHomeSection = observer(() => {
     const [tasksArray, setTasksArray] = useState<ITaskItem[]>([])
 
     //MOBX
-    const {tasks, searchTitle, isLoading, isFiltered, filteredTasksByDone, filteredTasksBySearch } = taskStore;     
-    console.log(isFiltered);
-     
+    const { tasks, isLoading, isFiltered, filteredTasks } = taskStore;
 
     //EFFECT
     useEffect(() => {
-        if(!isFiltered) setTasksArray(toJS(tasks))
-        else setTasksArray(toJS(filteredTasksByDone ?? filteredTasksBySearch))
-    }, [isFiltered, tasks, filteredTasksByDone, filteredTasksBySearch])
+        if (!isFiltered) setTasksArray(tasks)
+        else setTasksArray(filteredTasks)
+    }, [filteredTasks, tasks, isFiltered])
 
-    
-
-    if(isLoading) return <Loader/>
+    if (isLoading) return <Loader />
     return (
         <main className={cl.TaskHomeSection}>
             <div className={cl.topContainer}>
-                <Search/>
-                <AddTask/>
+                <Search />
+                <AddTask />
             </div>
             <div className={cl.middleContainer}>
-                <TaskFilter/>
+                <TaskFilter />
             </div>
-            <TaskList items={tasksArray}/>
+            <TaskList items={tasksArray} />
         </main>
     )
 })

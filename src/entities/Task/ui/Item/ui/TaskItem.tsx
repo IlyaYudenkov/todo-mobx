@@ -14,11 +14,11 @@ export const TaskItem = ({
     done
 }: ITaskItem) => {
     //STATE
-    const [completed, setIsCompleted] = useState<boolean>(false);
+    const [completed, setIsCompleted] = useState<boolean>(done);
 
     //EFFECT
     useEffect(() => {
-        if (done) setIsCompleted(done)
+        setIsCompleted(done)
     }, [done])
 
     //HANDLE

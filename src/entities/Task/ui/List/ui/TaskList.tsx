@@ -4,20 +4,20 @@ import { TaskItem } from "../../Item/ui/TaskItem"
 import { ITaskItem } from "@/entities/Task/model/task.model"
 import { Button } from "@/shared/UI/Button"
 import { taskStore } from "@/app/store/task.store"
+import { observer } from "mobx-react-lite"
 
 interface ITaskList {
     className?: string,
     items: ITaskItem[]
 }
 
-export const TaskList = ({
+export const TaskList = observer(({
     className,
     items
 }: ITaskList) => {
 
     //MOBX
     const isFiltered = taskStore.isFiltered
-    
 
     return (
         <section className={cls(cl.TaskList, className)}>
@@ -36,4 +36,4 @@ export const TaskList = ({
             </Button>}
         </section>
     )
-}
+})
