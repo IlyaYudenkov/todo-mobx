@@ -1,17 +1,16 @@
-import { forwardRef, ReactNode, Ref } from 'react'
+import { forwardRef, PropsWithChildren, Ref } from 'react'
 import cl from './_Wrapper1280.module.scss'
 import { cls } from '@/shared/lib/classes.lib'
 
-interface IWrapper1280 {
-    children?: ReactNode
+interface IWrapper1280 extends PropsWithChildren {
     classNameWrapper?: string
     classNameContent?: string
 }
 
 export const Wrapper1280 = forwardRef<HTMLDivElement, IWrapper1280>((
     {
-        children, 
-        classNameWrapper, 
+        children,
+        classNameWrapper,
         classNameContent
     }, refOut: Ref<HTMLDivElement>
 ) => {

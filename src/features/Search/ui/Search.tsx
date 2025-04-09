@@ -5,6 +5,7 @@ import { MAGNIFIER_ICON } from "@/shared/data/icon/magnifier.icon"
 import { FormEvent, useRef } from "react"
 import { taskStore } from "@/app/store/task.store"
 import { getFormData } from "@/shared/lib/formData.lib"
+import { EButtonType } from "@/shared/UI/Button/model/button.model"
 
 export const Search = () => {
 
@@ -15,24 +16,24 @@ export const Search = () => {
     const searchByTitle = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (!formRef.current) return;
-        const { titleTask } = getFormData(new FormData(formRef.current))
+        const { searchTitle } = getFormData(new FormData(formRef.current))
 
-        if (!titleTask) return;
-        taskStore.searchTaskByTitle({ title: titleTask })
+        if (!searchTitle) return;
+        taskStore.updateSearchTitle(searchTitle)
     }
 
     return (
-        <form className={cl.Search} ref={formRef}>
+        <form className={cl.Search} ref={formRef} onSubmit={searchByTitle}>
             <InputText
                 className={cl.inputSearch}
-                name="titleTask"
+                name="searchTitle"
                 placeholder="Поиск"
             />
             <Button
+                type={EButtonType.SUBMIT}
                 className={cl.buttonSearch}
                 afterImage={MAGNIFIER_ICON}
                 afterProps={{ width: 20, height: 20 }}
-                onClick={searchByTitle}
             />
         </form>
     )

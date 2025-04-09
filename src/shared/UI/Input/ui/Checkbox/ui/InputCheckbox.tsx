@@ -1,14 +1,14 @@
-import cl from './_Checkbox.module.scss'
+import cl from './_InputCheckbox.module.scss'
 import { useEffect, useState } from "react";
 
 interface ICheckbox {
     title?: string;
     checked?: boolean;
-    onClick?: (event: React.MouseEvent<HTMLLabelElement>) => void;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+    onClick?: (e: React.MouseEvent<HTMLLabelElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 }
 
-export const Checkbox = ({
+export const InputCheckbox = ({
     title,
     checked = false,
     onClick,

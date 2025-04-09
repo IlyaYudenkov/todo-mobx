@@ -27,15 +27,15 @@ export const TaskApi = {
         return updatedTasksArray;
     },
     //Изменить задачу
-    updateTask: ({ id, title }: ITaskItem): ITaskItem[] => {
+    updateTask: ( id: number, updatedTask: Partial<ITaskItem>): ITaskItem[] => {
         const updatedTasksArray = TaskApi.getAllTasks().map(task =>
-            task.id === id ? { ...task, title } : task
+            task.id === id ? { ...task, ...updatedTask } : task
         )
         localStorage.setItem(TASKS_LS_KEY, JSON.stringify(updatedTasksArray))
         return updatedTasksArray;
     },
     //Удалить задачу
-    deleteTask: ( id: Partial<ITaskItem>): ITaskItem[] => {
+    deleteTask: ( id: number): ITaskItem[] => {
         const updatedTasksArray = TaskApi.getAllTasks().filter(task => task.id !== id)        
         localStorage.setItem(TASKS_LS_KEY, JSON.stringify(updatedTasksArray))        
         return updatedTasksArray;

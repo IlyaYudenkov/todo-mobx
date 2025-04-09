@@ -1,10 +1,9 @@
 import { cls } from "@/shared/lib/classes.lib"
 import cl from './_WrapperFlex.module.scss'
-import { ReactNode } from "react"
+import { PropsWithChildren } from "react"
 
-interface IWrapperFlex{
+interface IWrapperFlex extends PropsWithChildren {
     className?: string,
-    children?: ReactNode
 }
 
 export const WrapperFlex = ({

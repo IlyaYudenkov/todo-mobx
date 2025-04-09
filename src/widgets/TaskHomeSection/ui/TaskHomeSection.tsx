@@ -7,12 +7,27 @@ import { taskStore } from '@/app/store/task.store'
 import { observer } from 'mobx-react-lite'
 import { toJS } from 'mobx'
 import { Loader } from '@/shared/UI/Loader'
+import { useEffect, useState } from 'react'
+import { ITaskItem } from '@/entities/Task/model/task.model'
 
 
 export const TaskHomeSection = observer(() => {
 
+    //STATE
+    const [tasksArray, setTasksArray] = useState<ITaskItem[]>([])
+
     //MOBX
-    const {tasks, isLoading} = taskStore;    
+    const {tasks, searchTitle, isLoading, isFiltered, filteredTasksByDone, filteredTasksBySearch } = taskStore;     
+    console.log(isFiltered);
+     
+
+    //EFFECT
+    useEffect(() => {
+        if(!isFiltered) setTasksArray(toJS(tasks))
+        else setTasksArray(toJS(filteredTasksByDone ?? filteredTasksBySearch))
+    }, [isFiltered, tasks, filteredTasksByDone, filteredTasksBySearch])
+
+    
 
     if(isLoading) return <Loader/>
     return (
@@ -24,7 +39,7 @@ export const TaskHomeSection = observer(() => {
             <div className={cl.middleContainer}>
                 <TaskFilter/>
             </div>
-            <TaskList items={toJS(tasks)}/>
+            <TaskList items={tasksArray}/>
         </main>
     )
 })

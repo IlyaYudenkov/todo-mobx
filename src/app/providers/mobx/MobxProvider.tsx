@@ -1,13 +1,9 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 import { MobxContext } from "./MobxContext";
 import { taskStore } from "@/app/store/task.store";
 
-interface IMobxProvider {
-    children: ReactNode
-}
 
-
-export const MobxProvider = ({ children }: IMobxProvider) => {
+export const MobxProvider = ({ children }: PropsWithChildren) => {
     return (
         <MobxContext.Provider value={{
             taskStore

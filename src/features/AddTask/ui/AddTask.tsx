@@ -21,7 +21,7 @@ export const AddTask = observer(() => {
         const { titleTask } = getFormData(new FormData(formRef.current))
 
         if (!titleTask) return;
-        taskStore.addTask({ title: titleTask })
+        taskStore.addTask(titleTask)
     }
 
     return (
