@@ -7,12 +7,13 @@ interface IInputText extends IInput {
     defaultValue?: string,
     type?: EInputTextTypes
     variant?: EInputTextVariants
-
+    id?: string
     rows?: number
 }
 
 export const InputText = ({
     className,
+    id,
     name,
     defaultValue,
     type = EInputTextTypes.TEXT,
@@ -24,12 +25,14 @@ export const InputText = ({
     return (
         <>
             {variant === EInputTextVariants.INPUT ? <input
+                id={id}
                 name={name}
                 className={cls(cl.input, className)}
                 defaultValue={defaultValue}
                 type={type}
                 placeholder={placeholder}
-            /> : <textarea name={name}
+            /> : <textarea id={id}
+                name={name}
                 rows={rows}
                 className={cls(cl.textarea, className)}
                 defaultValue={defaultValue}

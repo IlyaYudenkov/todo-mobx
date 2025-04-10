@@ -1,13 +1,14 @@
 import { TaskApi } from "@/entities/Task/api/task.api";
 import { ITaskItem } from "@/entities/Task/model/task.model";
 import { ETaskFilter } from "@/features/TaskFilter/model/taskFilter.model";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 
 class TaskStore {
     tasks: ITaskItem[] = []
     isLoading: boolean = false
     filter: ETaskFilter = ETaskFilter.ALL
     searchTitle: string = '';
+    selectedTask: ITaskItem = {} as ITaskItem
 
     constructor() {
         makeAutoObservable(this)
@@ -46,18 +47,27 @@ class TaskStore {
         return this.tasks.find(task => task.id === id)
     }
 
-    toggleTheTask(id: number, completed?: boolean) {
-        const isDone = completed ?? this.getTask(id)?.done
+    setSelectedTask(task: ITaskItem) {
+        this.selectedTask = task
+    }
+
+    toggleTheTask(id: number, done: boolean) {
+        const isDone = done ?? this.getTask(id)?.done
         this.tasks = TaskApi.updateTask(id, {
             done: isDone
         })
+        if (this.selectedTask.id === id) {
+            runInAction(() => {
+                taskStore.selectedTask = { ...this.selectedTask, done }
+            })
+        }
     }
 
+    //FILTERS
     get isFiltered() {
         return this.searchTitle !== '' || this.filter !== ETaskFilter.ALL;
     }
 
-    //FILTERS
     get filteredTasks() {
         let result: ITaskItem[] = this.tasks;
 
@@ -78,7 +88,6 @@ class TaskStore {
     setFilterByDone(filter: ETaskFilter) {
         this.filter = filter;
     }
-
 
     resetTheFilters() {
         this.isLoading = true;

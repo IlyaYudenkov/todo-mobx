@@ -15,7 +15,6 @@
     --background-2: var(--highlight-beige);
     --foreground-1: var(--white-1);
 
-
     --positive: var(--green-1);
 
     //FONT-SIZE
@@ -49,6 +48,7 @@
 
 body {
     background-color: var(--background-1);
+    font-family: "Roboto", sans-serif;
 }
 
 /*nullstyle*/

@@ -25,12 +25,13 @@ export const TaskList = observer(({
                 <TaskItem
                     key={it.id}
                     id={it.id}
+                    description={it.description}
                     title={it.title}
                     className={cl.className}
                     done={it.done}
                 />
             ))}
-            {items.length < 1 && <div className={cl.notFound}>Задач по такому запросу не найдено</div>}
+            {items.length < 1 && <p className={cl.notFound}>Задач по такому запросу не найдено</p>}
             {isFiltered && <Button className={cl.defaultButton} onClick={() => taskStore.resetTheFilters()}>
                 Сбросить фильтры
             </Button>}

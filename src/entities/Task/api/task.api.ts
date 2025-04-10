@@ -4,8 +4,8 @@ import { ITaskItem } from "../model/task.model";
 const TASKS_LS_KEY = 'tasks'
 
 const DEFAULT_TASKS_ARRAY: ITaskItem[] = [
-    { id: 1, title: 'Прочитать документацию по Next js 17', done: false },
-    { id: 2, title: 'Внедрить MobX в реакт приложение', done: true }
+    { id: 1, title: 'Прочитать документацию по Next js 17', description: '', done: false },
+    { id: 2, title: 'Внедрить MobX в реакт приложение', description: '', done: true }
 ]
 
 export const TaskApi = {
@@ -27,17 +27,17 @@ export const TaskApi = {
         return updatedTasksArray;
     },
     //Изменить задачу
-    updateTask: ( id: number, updatedTask: Partial<ITaskItem>): ITaskItem[] => {
+    updateTask: (id: number, updatedTask: Partial<ITaskItem>): ITaskItem[] => {
         const updatedTasksArray = TaskApi.getAllTasks().map(task =>
             task.id === id ? { ...task, ...updatedTask } : task
-        )
+        )        
         localStorage.setItem(TASKS_LS_KEY, JSON.stringify(updatedTasksArray))
         return updatedTasksArray;
     },
     //Удалить задачу
-    deleteTask: ( id: number): ITaskItem[] => {
-        const updatedTasksArray = TaskApi.getAllTasks().filter(task => task.id !== id)        
-        localStorage.setItem(TASKS_LS_KEY, JSON.stringify(updatedTasksArray))        
+    deleteTask: (id: number): ITaskItem[] => {
+        const updatedTasksArray = TaskApi.getAllTasks().filter(task => task.id !== id)
+        localStorage.setItem(TASKS_LS_KEY, JSON.stringify(updatedTasksArray))
         return updatedTasksArray;
     }
 }

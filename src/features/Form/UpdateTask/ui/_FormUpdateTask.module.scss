@@ -1,0 +1,30 @@
+.FormUpdateTask{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    label{
+        font-size: 20px;
+        color: var(--white-2);
+    }
+    
+    .updateButton{
+        margin: auto;
+        width: fit-content;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid var(--foreground-1);
+        font-weight: var(--fw-med);
+        transition: all .3s ease-in-out;
+
+        &:hover{
+            border-color: var(--beige-1);
+            color: var(--background-1);
+            background-color: var(--foreground-1);
+        }
+        &:active{
+            background-color: var(--white-2);
+        }
+    }
+}

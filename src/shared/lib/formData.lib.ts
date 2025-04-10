@@ -8,3 +8,12 @@ export const getFormData = (formData: FormData) => {
     })
     return tempDataStorage;
 }
+
+/**
+ * Возвращает все данные которые указаны в форме
+ * @param formRefCurrent - `HTMLFormElement`
+ * @returns 
+ */
+export const getFormDataFromForm = (formRefCurrent: HTMLFormElement) => {
+    return getFormData(new FormData(formRefCurrent));
+}

@@ -6,11 +6,13 @@ import { TRASH_ICON } from "@/shared/data/icon/trash.icon"
 import { useEffect, useState } from "react"
 import { ITaskItem } from "@/entities/Task/model/task.model"
 import { taskStore } from "@/app/store/task.store"
+import { observer } from "mobx-react-lite"
 
-export const TaskItem = ({
+export const TaskItem = observer(({
     className,
     title,
     id,
+    description,
     done
 }: ITaskItem) => {
     //STATE
@@ -29,8 +31,14 @@ export const TaskItem = ({
         taskStore.toggleTheTask(id, checked)
     }
 
+    const handleSelect = (task: ITaskItem) => taskStore.setSelectedTask(task);
+
     return (
-        <div className={cls(cl.TaskItem, completed ? cl.completedTask : '', className)}>
+        <div className={cls(
+            cl.TaskItem,
+            completed ? cl.completedTask : '',
+            className)}
+            onClick={() => handleSelect({ id, done, title, description })}>
             <div className={cl.leftContainer}>
                 <InputCheckbox
                     onClick={(e) => e.stopPropagation()}
@@ -46,4 +54,4 @@ export const TaskItem = ({
             />
         </div>
     )
-}
+})

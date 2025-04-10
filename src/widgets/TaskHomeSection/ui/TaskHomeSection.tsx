@@ -8,7 +8,9 @@ import { observer } from 'mobx-react-lite'
 import { Loader } from '@/shared/UI/Loader'
 import { useEffect, useState } from 'react'
 import { ITaskItem } from '@/entities/Task/model/task.model'
-
+import { IDefaultForm } from '@/features/Form/Default/model/defaultForm.model'
+import { PLUS_ICON } from '@/shared/data/icon/plus.icon'
+import { MAGNIFIER_ICON } from '@/shared/data/icon/magnifier.icon'
 
 export const TaskHomeSection = observer(() => {
 
@@ -23,6 +25,20 @@ export const TaskHomeSection = observer(() => {
         if (!isFiltered) setTasksArray(tasks)
         else setTasksArray(filteredTasks)
     }, [filteredTasks, tasks, isFiltered])
+
+    //VARIABLE
+    const formsArray: IDefaultForm[] = [
+        {
+            inputName: 'titleTask',
+            inputPlaceholder: 'Введите задачу',
+            buttonIcon: PLUS_ICON,
+        },
+        {
+            inputName: 'searchTitle',
+            inputPlaceholder: 'Поиск',
+            buttonIcon: MAGNIFIER_ICON,
+        }
+    ]
 
     if (isLoading) return <Loader />
     return (
