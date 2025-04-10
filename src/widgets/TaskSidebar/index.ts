@@ -1,1 +1,1 @@
-export {} from './ui/TaskSidebar'
+export {TaskSidebar} from './ui/TaskSidebar'

@@ -1,6 +1,4 @@
-import { Search } from '@/features/Search'
 import cl from './_TaskHomeSection.module.scss'
-import { AddTask } from '@/features/AddTask'
 import { TaskFilter } from '@/features/TaskFilter'
 import { TaskList } from '@/entities/Task'
 import { taskStore } from '@/app/store/task.store'
@@ -11,6 +9,7 @@ import { ITaskItem } from '@/entities/Task/model/task.model'
 import { IDefaultForm } from '@/features/Form/Default/model/defaultForm.model'
 import { PLUS_ICON } from '@/shared/data/icon/plus.icon'
 import { MAGNIFIER_ICON } from '@/shared/data/icon/magnifier.icon'
+import { DefaultForm } from '@/features/Form/Default'
 
 export const TaskHomeSection = observer(() => {
 
@@ -28,15 +27,28 @@ export const TaskHomeSection = observer(() => {
 
     //VARIABLE
     const formsArray: IDefaultForm[] = [
+
+        //ADD_TASK FORM
         {
             inputName: 'titleTask',
             inputPlaceholder: 'Введите задачу',
             buttonIcon: PLUS_ICON,
+            onSubmit: (titleTask: string) => {
+                if (titleTask) {
+                    taskStore.addTask(titleTask);
+                }
+            }
         },
+        //SEARCH_BY_TITLE FORM
         {
             inputName: 'searchTitle',
             inputPlaceholder: 'Поиск',
             buttonIcon: MAGNIFIER_ICON,
+            onSubmit: (searchTitle: string) => {
+                if (searchTitle) {
+                    taskStore.updateSearchTitle(searchTitle);
+                }
+            }
         }
     ]
 
@@ -44,8 +56,9 @@ export const TaskHomeSection = observer(() => {
     return (
         <main className={cl.TaskHomeSection}>
             <div className={cl.topContainer}>
-                <Search />
-                <AddTask />
+                {formsArray.map((formProps, index) => (
+                    <DefaultForm key={index} {...formProps} />
+                ))}
             </div>
             <div className={cl.middleContainer}>
                 <TaskFilter />

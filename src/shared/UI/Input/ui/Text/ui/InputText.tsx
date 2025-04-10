@@ -5,10 +5,12 @@ import cl from './_InputText.module.scss'
 
 interface IInputText extends IInput {
     defaultValue?: string,
+    value?: string
     type?: EInputTextTypes
     variant?: EInputTextVariants
     id?: string
     rows?: number
+    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 export const InputText = ({
@@ -16,27 +18,30 @@ export const InputText = ({
     id,
     name,
     defaultValue,
+    value,
     type = EInputTextTypes.TEXT,
     variant = EInputTextVariants.INPUT,
     placeholder,
-
+    onChange,
     rows = 10,
 }: IInputText) => {
+    
+    const commonProps = {
+        id,
+        name,
+        className: cls(variant === EInputTextVariants.INPUT ? cl.input : cl.textarea, className),
+        defaultValue,
+        value,
+        placeholder,
+        onChange,
+    };
     return (
         <>
             {variant === EInputTextVariants.INPUT ? <input
-                id={id}
-                name={name}
-                className={cls(cl.input, className)}
-                defaultValue={defaultValue}
+                {...commonProps}
                 type={type}
-                placeholder={placeholder}
-            /> : <textarea id={id}
-                name={name}
-                rows={rows}
-                className={cls(cl.textarea, className)}
-                defaultValue={defaultValue}
-                placeholder={placeholder} />}
+            /> : <textarea {...commonProps}
+                rows={rows} />}
         </>
 
     )

@@ -5,11 +5,13 @@ import { Button } from '@/shared/UI/Button'
 import { EButtonType } from '@/shared/UI/Button/model/button.model'
 import { cls } from '@/shared/lib/classes.lib'
 import { IDefaultForm } from '../model/defaultForm.model'
+import { getFormData } from '@/shared/lib/formData.lib'
 
 export const DefaultForm = ({
     buttonIcon,
     inputName,
     inputPlaceholder,
+    onSubmit,
     className,
     classNameInput,
     classNameButton
@@ -20,7 +22,15 @@ export const DefaultForm = ({
 
     //HANDLE
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
 
+        if (!formRef.current) return;
+
+        const {data} = getFormData(new FormData(formRef.current))
+
+        if (onSubmit) {
+            onSubmit(data)
+        }
     }
 
     return (

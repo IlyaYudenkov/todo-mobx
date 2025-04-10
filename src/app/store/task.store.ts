@@ -36,7 +36,14 @@ class TaskStore {
     }
 
     updateTask(task: ITaskItem) {
-        this.tasks = TaskApi.updateTask(task.id, task);
+        const updatedTasks = TaskApi.updateTask(task.id, task);
+        this.tasks = this.tasks.map(t => t.id === task.id ? updatedTasks.find(it => it.id === task.id)! : t)
+        if (this.selectedTask.id === task.id) {
+            const updatedTask = updatedTasks.find(t => t.id === task.id);
+            if (updatedTask) {
+                this.selectedTask = updatedTask;
+            }
+        }
     }
 
     updateSearchTitle(title: string) {

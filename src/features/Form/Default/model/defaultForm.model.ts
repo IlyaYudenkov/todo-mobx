@@ -8,4 +8,5 @@ export interface IDefaultForm {
     className?: string
     classNameInput?: string
     classNameButton?: string,
+    onSubmit?: (data: string) => void
 }
