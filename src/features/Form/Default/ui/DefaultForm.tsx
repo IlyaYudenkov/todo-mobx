@@ -2,10 +2,10 @@ import { FormEvent, useRef } from 'react'
 import cl from './_DefaultForm.module.scss'
 import { InputText } from '@/shared/UI/Input'
 import { Button } from '@/shared/UI/Button'
-import { EButtonType } from '@/shared/UI/Button/model/button.model'
+import { EButtonType, EButtonVariant } from '@/shared/UI/Button/model/button.model'
 import { cls } from '@/shared/lib/classes.lib'
 import { IDefaultForm } from '../model/defaultForm.model'
-import { getFormData } from '@/shared/lib/formData.lib'
+import { getFormDataFromForm } from '@/shared/lib/formData.lib'
 
 export const DefaultForm = ({
     buttonIcon,
@@ -26,11 +26,11 @@ export const DefaultForm = ({
 
         if (!formRef.current) return;
 
-        const {data} = getFormData(new FormData(formRef.current))
+        const data = getFormDataFromForm(formRef.current);
 
         if (onSubmit) {
-            onSubmit(data)
-        }
+            onSubmit(data[inputName])
+        }        
     }
 
     return (
@@ -42,9 +42,9 @@ export const DefaultForm = ({
             />
             <Button
                 type={EButtonType.SUBMIT}
-                className={cls(cl.button, classNameButton)}
+                variant={EButtonVariant.ANGULAR}
+                className={classNameButton}
                 afterImage={buttonIcon}
-                afterProps={{ width: 20, height: 20 }}
             />
         </form>
     )

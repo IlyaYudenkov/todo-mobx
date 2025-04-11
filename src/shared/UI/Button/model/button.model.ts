@@ -8,11 +8,17 @@ export enum EButtonType{
     BUTTON = 'button'
 }
 
+export enum EButtonVariant{
+    DEFAULT = 'default',
+    NEGATIVE = 'negative',
+    ANGULAR = 'angular'
+}
 
 export type IButtonWORef = Omit<IButton, 'ref'>
 
 export interface IButton {
-    type?: 'button' | 'submit'
+    type?: EButtonType,
+    variant?: EButtonVariant,
     isRounded?: boolean
 
     ref?: RefObject<HTMLButtonElement>

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { ITaskItem } from "@/entities/Task/model/task.model"
 import { taskStore } from "@/app/store/task.store"
 import { observer } from "mobx-react-lite"
+import { EButtonVariant } from "@/shared/UI/Button/model/button.model"
 
 export const TaskItem = observer(({
     className,
@@ -47,9 +48,8 @@ export const TaskItem = observer(({
                 <h5 className={cl.title}>{title}</h5>
             </div>
             <Button
-                className={cl.trashButton}
+                variant={EButtonVariant.NEGATIVE}
                 afterImage={TRASH_ICON}
-                afterProps={{ width: 20, height: 20 }}
                 onClick={() => deleteTheTask(id)}
             />
         </div>

@@ -55,7 +55,9 @@ class TaskStore {
     }
 
     setSelectedTask(task: ITaskItem) {
+        this.isLoading = true;
         this.selectedTask = task
+        this.isLoading = false;
     }
 
     toggleTheTask(id: number, done: boolean) {

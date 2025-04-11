@@ -1,3 +1,48 @@
-.button{
+.button {
+    width: fit-content;
     color: #ffffff;
+    transition: all .3s ease-in-out;
+}
+
+.default {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--foreground-1);
+    font-weight: var(--fw-sb);
+
+    &:hover {
+        border-color: var(--beige-1);
+        color: var(--background-1);
+        background-color: var(--foreground-1);
+    }
+
+    &:active {
+        background-color: var(--white-2);
+    }
+}
+
+.negative {
+    padding: 7px;
+    border-radius: 50%;
+
+    &:hover {
+        background-color: var(--negative-1);
+    }
+
+    &:active {
+        background-color: var(--negative-2);
+    }
+}
+
+.angular{
+    padding: 10px 15px;
+    border-radius: 0px 15px 15px 0px;
+
+    &:hover{
+        background-color: var(--beige-1);
+    }
+
+    &:active{
+        background-color: var(--beige-2);
+    }
 }

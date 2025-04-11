@@ -1,5 +1,5 @@
 .InputSelect{
-    display: block; 
+    display: flex; 
 
     width: 100%;
     background-color: rgba(214, 207, 198, 0.16);
@@ -10,7 +10,7 @@
     transition: border-color .3s ease-in-out;
 
     &:hover{
-        border-color: #e7e0d698;
+        border-color: var(--beige-1);
     }
 
     & option{

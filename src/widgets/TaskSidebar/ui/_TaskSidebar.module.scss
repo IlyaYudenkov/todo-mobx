@@ -13,11 +13,16 @@
         display: flex;
         align-items: flex-start;
         gap: 15px;
+        width: 100%;
+
+        .button {
+            margin-left: auto;
+        }
     }
 
     .sidebarTitle {
         font-size: 24px;
-        color: #ffffff;
+        color: var(--white-1);
         transition: color .3s ease-in-out;
     }
 

@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
 import cl from './_Button.module.scss'
-import { EButtonType, IButton } from "../model/button.model"
+import { EButtonType, EButtonVariant, IButton } from "../model/button.model"
 import { cls } from "@/shared/lib/classes.lib"
 import { ImageSmart } from "../../ImageSmart/ui/ImageSmart"
 
 export const Button = ({
     type = EButtonType.BUTTON,
+    variant = EButtonVariant.DEFAULT,
     isRounded = true,
     ref,
     title, href,
-    beforeImage, beforeProps, afterImage, afterProps,
+    beforeImage, beforeProps, afterImage, afterProps = {width: 20, height: 20},
     active = false, success = false, disabled = false, hovered, loading = false,
     onClick = () => { }, onMouseEnter = () => { }, onMouseLeave = () => { },
     children, className, classNameLink,
@@ -52,6 +53,7 @@ export const Button = ({
             onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp}
             className={cls(
                 cl.button,
+                cl[variant],
                 isRounded ? cl.rounded : '',
                 active ? cl.active : '',
                 !title ? cl.noTitle : '',
