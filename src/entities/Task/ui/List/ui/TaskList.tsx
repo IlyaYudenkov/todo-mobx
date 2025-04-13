@@ -17,7 +17,7 @@ export const TaskList = observer(({
 }: ITaskList) => {
 
     //MOBX
-    const isFiltered = taskStore.isFiltered
+    const {isFiltered, searchTitle} = taskStore
 
     return (
         <section className={cls(cl.TaskList, className)}>
@@ -31,7 +31,7 @@ export const TaskList = observer(({
                     done={it.done}
                 />
             ))}
-            {items.length < 1 && <p className={cl.notFound}>Задач по такому запросу не найдено</p>}
+            {items.length < 1 && <p className={cl.notFound}>Задач по запросу {searchTitle} не найдено</p>}
             {isFiltered && <Button className={cl.defaultButton} onClick={() => taskStore.resetTheFilters()}>
                 Сбросить фильтры
             </Button>}

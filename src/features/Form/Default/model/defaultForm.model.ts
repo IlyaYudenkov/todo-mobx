@@ -2,7 +2,7 @@ import { IIcon } from "@/shared/model/icon.model"
 
 export interface IDefaultForm {
     buttonIcon: IIcon
-    inputName: string,
+    inputName: 'searchTitle' | 'titleTask',
     inputPlaceholder: string,
 
     className?: string

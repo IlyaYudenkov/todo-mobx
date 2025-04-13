@@ -5,7 +5,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 class TaskStore {
     tasks: ITaskItem[] = []
-    isLoading: boolean = false
     filter: ETaskFilter = ETaskFilter.ALL
     searchTitle: string = '';
     selectedTask: ITaskItem = {} as ITaskItem
@@ -16,9 +15,7 @@ class TaskStore {
     }
 
     getAll() {
-        this.isLoading = true;
         this.tasks = TaskApi.getAllTasks();
-        this.isLoading = false;
     }
 
     addTask(title: string, description?: string) {
@@ -55,9 +52,7 @@ class TaskStore {
     }
 
     setSelectedTask(task: ITaskItem) {
-        this.isLoading = true;
         this.selectedTask = task
-        this.isLoading = false;
     }
 
     toggleTheTask(id: number, done: boolean) {
@@ -99,10 +94,8 @@ class TaskStore {
     }
 
     resetTheFilters() {
-        this.isLoading = true;
         this.tasks = TaskApi.getAllTasks();
         this.filter = ETaskFilter.ALL;
-        this.isLoading = false;
         this.updateSearchTitle('')
     }
 }

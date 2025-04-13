@@ -21,8 +21,8 @@
     }
 
     .sidebarTitle {
-        font-size: 24px;
-        color: var(--white-1);
+        font-size: var(--fs-24);
+        color: var(--foreground-1);
         transition: color .3s ease-in-out;
     }
 

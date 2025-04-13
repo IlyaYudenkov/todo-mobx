@@ -30,7 +30,8 @@ export const DefaultForm = ({
 
         if (onSubmit) {
             onSubmit(data[inputName])
-        }        
+        }
+        if (inputName === 'titleTask') formRef.current.reset()
     }
 
     return (

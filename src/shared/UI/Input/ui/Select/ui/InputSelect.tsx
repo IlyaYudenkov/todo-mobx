@@ -22,12 +22,13 @@ export const InputSelect = ({
 }: IInputSelect) => {
 
     //STATE
-    const [selectedOption, setSelectedOption] = useState<IOption | undefined>(defaultOption)  
+    const [selectedOption, setSelectedOption] = useState<IOption | undefined>(defaultOption)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     //EFFECT
     useEffect(() => {
-        if(defaultOption) setSelectedOption(defaultOption)
-        else if(selectedOutOption) setSelectedOption(selectedOutOption)
+        if (defaultOption) setSelectedOption(defaultOption)
+        else if (selectedOutOption) setSelectedOption(selectedOutOption)
     }, [defaultOption, selectedOutOption])
 
     //HANDLE
@@ -36,13 +37,20 @@ export const InputSelect = ({
         setSelectedOption(foundOption);
         onChange?.(foundOption)
         onChangeEvent?.(e)
-    }    
+    }
 
     return (
-        <select value={selectedOption?.value} onChange={handleChange} className={cls(cl.InputSelect, className)}>
-            {options.map(opt => (
-                <option className={cl.option} value={opt.value} key={opt.id}>{opt.name}</option>
-            ))}
-        </select>
+        <div className={cl.wrapper}>
+            <select value={selectedOption?.value}
+                onClick={() => setIsOpen(!isOpen)}
+                onChange={handleChange}
+                className={cls(cl.InputSelect, className)}>
+                {options.map(opt => (
+                    <option className={cl.option} value={opt.value} key={opt.id}>{opt.name}</option>
+                ))}
+            </select>
+            <span className={cls(cl.arrow, isOpen ? cl.open : '')} />
+        </div>
+
     )
 }

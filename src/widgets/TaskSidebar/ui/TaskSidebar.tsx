@@ -9,7 +9,6 @@ import { Button } from '@/shared/UI/Button'
 import { XMARK_ICON } from '@/shared/data/icon/xMark.icon'
 import { EButtonVariant } from '@/shared/UI/Button/model/button.model'
 import { ITaskItem } from '@/entities/Task/model/task.model'
-import { Loader } from '@/shared/UI/Loader'
 
 export const TaskSidebar = observer(() => {
 
@@ -17,7 +16,7 @@ export const TaskSidebar = observer(() => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     //MOBX
-    const {selectedTask, isLoading} = taskStore;
+    const selectedTask = taskStore.selectedTask;
 
     //EFFECT
     useEffect(() => {
@@ -34,8 +33,6 @@ export const TaskSidebar = observer(() => {
         setIsOpen(false)
         taskStore.setSelectedTask({} as ITaskItem)
     }
-
-    if(isLoading) return <Loader/>
 
     return (
         <aside className={cls(cl.TaskSidebar, isOpen ? cl.visible : '')}>

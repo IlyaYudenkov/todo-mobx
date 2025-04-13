@@ -1,19 +1,50 @@
-.InputSelect{
-    display: flex; 
+.wrapper {
+    position: relative;
+}
 
-    width: 100%;
-    background-color: rgba(214, 207, 198, 0.16);
-    padding: 10px;
-
-    border-radius: 15px;
+.InputSelect {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--highlight-beige);
     border: 2px solid transparent;
-    transition: border-color .3s ease-in-out;
+    border-radius: 15px;
+    padding: 10px 40px 10px 15px;
+    color: var(--black);
+    font-weight: var(--fw-sb);
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
 
-    &:hover{
+    &:hover {
         border-color: var(--beige-1);
     }
 
-    & option{
-        padding: 10px;
+    &:focus {
+        outline: none;
+        border-color: var(--beige-2);
     }
+
+    & option {
+        background-color:var(--gray-1);
+        font-weight: var(--fw-sb);
+
+    }
+}
+
+.arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    pointer-events: none;
+    transition: transform .2s ease-in-out, top .2s ease-in-out;
+}
+
+.open {
+    top: 60%;
+    transform: translateY(-50%) rotate(225deg);
 }

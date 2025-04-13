@@ -3,7 +3,6 @@ import { TaskFilter } from '@/features/TaskFilter'
 import { TaskList } from '@/entities/Task'
 import { taskStore } from '@/app/store/task.store'
 import { observer } from 'mobx-react-lite'
-import { Loader } from '@/shared/UI/Loader'
 import { useEffect, useState } from 'react'
 import { ITaskItem } from '@/entities/Task/model/task.model'
 import { PLUS_ICON } from '@/shared/data/icon/plus.icon'
@@ -16,7 +15,7 @@ export const TaskHomeSection = observer(() => {
     const [tasksArray, setTasksArray] = useState<ITaskItem[]>([])
 
     //MOBX
-    const { tasks, isLoading, isFiltered, filteredTasks } = taskStore;
+    const { tasks, isFiltered, filteredTasks } = taskStore;
 
     //EFFECT
     useEffect(() => {
@@ -24,7 +23,6 @@ export const TaskHomeSection = observer(() => {
         else setTasksArray(filteredTasks)
     }, [filteredTasks, tasks, isFiltered])
 
-    if (isLoading) return <Loader />
     return (
         <main className={cl.TaskHomeSection}>
             <div className={cl.addTaskContainer}>
